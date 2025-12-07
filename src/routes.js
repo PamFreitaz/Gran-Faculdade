@@ -1,30 +1,30 @@
 const express = require('express');
 const routes = express.Router();
 
-const ProductController = require('./controllers/ProductController');
-const SupplierController = require('./controllers/SupplierController');
-const AssociationController = require('./controllers/AssociationController');
+const ProdutoController = require('./controllers/ProdutoController');
+const FornecedorController = require('./controllers/FornecedorController');
+const AssociacaoController = require('./controllers/AssociacaoController');
 
 routes.get('/', (req, res) => {
-    res.send('API is running');
+    res.send('API rodando');
 });
 
-// Product Routes
-routes.post('/products', ProductController.store);
-routes.get('/products', ProductController.index);
-routes.put('/products/:id', ProductController.update);
-routes.delete('/products/:id', ProductController.delete);
+// Rotas de Produto
+routes.post('/produtos', ProdutoController.store);
+routes.get('/produtos', ProdutoController.index);
+routes.put('/produtos/:id', ProdutoController.update);
+routes.delete('/produtos/:id', ProdutoController.delete);
 
-// Supplier Routes
-routes.post('/suppliers', SupplierController.store);
-routes.get('/suppliers', SupplierController.index);
-routes.put('/suppliers/:id', SupplierController.update);
-routes.delete('/suppliers/:id', SupplierController.delete);
+// Rotas de Fornecedor
+routes.post('/fornecedores', FornecedorController.store);
+routes.get('/fornecedores', FornecedorController.index);
+routes.put('/fornecedores/:id', FornecedorController.update);
+routes.delete('/fornecedores/:id', FornecedorController.delete);
 
-// Association Routes
-routes.post('/associations', AssociationController.store);
-routes.get('/associations/products/:productId', AssociationController.getSuppliersByProduct);
-routes.get('/associations/suppliers/:supplierId', AssociationController.getProductsBySupplier);
-routes.delete('/associations', AssociationController.delete);
+// Rotas de Associação
+routes.post('/associacoes', AssociacaoController.store);
+routes.get('/associacoes/produtos/:produtoId', AssociacaoController.getFornecedoresByProduto);
+routes.get('/associacoes/fornecedores/:fornecedorId', AssociacaoController.getProdutosByFornecedor);
+routes.delete('/associacoes', AssociacaoController.delete);
 
 module.exports = routes;
